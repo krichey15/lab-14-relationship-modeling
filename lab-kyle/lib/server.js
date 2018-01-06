@@ -1,11 +1,22 @@
 'use strict';
 
-const express = require('express');
-const mongoose = require('mongoose');
+require('dotenv').config();
 
+const express = require('express');
 let app = express();
+
+const mongoose = require('mongoose');
+mongoose.Promise = Promise;
+mongoose.connect(process.env.MONGODB_URI, {useMongoClient:true});
+
 let http = null;
 let isRunning = false;
+
+app.use(require('morgan'));
+
+app.use('*', (req, res) => {
+  res.sendStatus(404);
+});
 
 module.exports = {
   start: (port) => {
