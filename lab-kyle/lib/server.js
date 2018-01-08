@@ -12,11 +12,13 @@ mongoose.connect(process.env.MONGODB_URI, {useMongoClient:true});
 let http = null;
 let isRunning = false;
 
-app.use(require('morgan'));
-
-app.use('*', (req, res) => {
+app.use('*', (req, res, next) => {
   res.sendStatus(404);
+  next();
 });
+
+app.use(require('../routes/teams'));
+app.use(require('../routes/players'));
 
 module.exports = {
   start: (port) => {

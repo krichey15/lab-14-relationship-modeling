@@ -8,12 +8,12 @@ const teamSchema = mongoose.Schema({
   roster: {type:mongoose.Schema.Types.ObjectId, ref:'rosters'},
 });
 
-teamSchema.pre('findOne', function(){
-
-});
-
-teamSchema.post('remove', function(done){
-
-});
+// teamSchema.pre('findOne', function(){
+//
+// });
+//
+// teamSchema.post('remove', function(done){
+//
+// });
 
 module.exports = mongoose.model('teams', teamSchema);
