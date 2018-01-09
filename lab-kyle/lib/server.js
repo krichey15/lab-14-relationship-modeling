@@ -16,6 +16,8 @@ let isRunning = false;
 
 app.use(morgan('dev'));
 
+app.use(require('./middleware/error'));
+
 app.use('*', (req, res, next) => {
   res.sendStatus(404);
   next();
