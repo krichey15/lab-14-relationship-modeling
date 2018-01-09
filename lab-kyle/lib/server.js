@@ -5,12 +5,16 @@ require('dotenv').config();
 const express = require('express');
 let app = express();
 
+const morgan = require('morgan');
+
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
-mongoose.connect(process.env.MONGODB_URI, {useMongoClient:true});
+mongoose.connect(process.env.MONGODB_URI);
 
 let http = null;
 let isRunning = false;
+
+app.use(morgan('dev'));
 
 app.use('*', (req, res, next) => {
   res.sendStatus(404);

@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const jsonParser = require('body-parser');
+const jsonParser = require('body-parser').json();
 const Player = require(__dirname + '/../models/players');
 
 const playerRouter = module.exports = express.Router();
