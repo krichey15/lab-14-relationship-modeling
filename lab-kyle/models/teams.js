@@ -8,12 +8,30 @@ const teamSchema = mongoose.Schema({
   roster: {type:mongoose.Schema.Types.ObjectId, ref:'rosters'},
 });
 
-// teamSchema.pre('findOne', function(){
-//
-// });
-//
-// teamSchema.post('remove', function(done){
-//
-// });
+teamSchema.pre('save', function(){
+  Roster.findOne({_id:this.roster})
+    .then( roster => {
+      console.log(roster);
+      if (roster._id){
+        return roster;
+      } else {
+        let newRoster = ({});
+        newRoster.save()
+          .then((data) => {
+            return data;
+          })
+          .catch();
+      }
+    })
+    .then(roster => {
+      return this.roster = roster._id;
+    })
+    .then(() => done())
+    .catch(done);
+});
+
+teamSchema.post('remove', function(done){
+
+});
 
 module.exports = mongoose.model('teams', teamSchema);

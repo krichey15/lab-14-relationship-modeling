@@ -9,7 +9,7 @@ const playerRouter = module.exports = express.Router();
 playerRouter.post('/players', jsonParser, (req, res, next) => {
   let newPlayer = new Player(req.body);
   newPlayer.save()
-    .then(player => res.send(player))
+    .then((player) => res.send(player))
     .catch(err => next(err));
 });
 

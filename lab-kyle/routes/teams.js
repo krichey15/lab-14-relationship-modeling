@@ -9,7 +9,7 @@ const teamRouter = module.exports = express.Router();
 teamRouter.post('/teams', jsonParser, (req, res, next) => {
   let newTeam = new Team(req.body);
   newTeam.save()
-    .then(team => res.send(team))
+    .then((team) => res.send(team))
     .catch(err => next(err));
 });
 
