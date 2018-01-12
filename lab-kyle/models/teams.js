@@ -26,7 +26,7 @@ teamSchema.pre('save', function(){
     .then(roster => {
       return this.roster = roster._id;
     })
-    .then(() => done())
+    .then(() => done() )
     .catch(done);
 });
 

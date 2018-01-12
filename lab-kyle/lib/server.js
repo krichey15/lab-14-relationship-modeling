@@ -16,15 +16,15 @@ let isRunning = false;
 
 app.use(morgan('dev'));
 
-app.use(require('./middleware/error'));
+app.use(require('../routes/teams'));
+app.use(require('../routes/players'));
 
 app.use('*', (req, res, next) => {
   res.sendStatus(404);
   next();
 });
 
-app.use(require('../routes/teams'));
-app.use(require('../routes/players'));
+app.use(require('./middleware/error'));
 
 module.exports = {
   start: (port) => {
