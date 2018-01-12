@@ -8,25 +8,20 @@ const teamSchema = mongoose.Schema({
   roster: {type:mongoose.Schema.Types.ObjectId, ref:'rosters'},
 });
 
-teamSchema.pre('save', function(){
-  Roster.findOne({_id:this.roster})
+teamSchema.pre('save', function(done){
+  Roster.findById(this.roster)
     .then( roster => {
-      console.log(roster);
-      if (roster._id){
-        return roster;
+      if (!roster){
+        let newRoster = new Roster();
+        return newRoster.save();
       } else {
-        let newRoster = ({});
-        newRoster.save()
-          .then((data) => {
-            return data;
-          })
-          .catch();
+        return roster;
       }
     })
     .then(roster => {
       return this.roster = roster._id;
     })
-    .then(() => done() )
+    .then(() => done())
     .catch(done);
 });
 
