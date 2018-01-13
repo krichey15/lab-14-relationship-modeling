@@ -25,8 +25,9 @@ teamSchema.pre('save', function(done){
     .catch(done);
 });
 
-teamSchema.post('remove', function(done){
-
+teamSchema.pre('findOne', function(){
+  this.populate('roster');
+  // this.populate({path: 'roster', populate:{path:'players', model:'player'}});
 });
 
 module.exports = mongoose.model('teams', teamSchema);
