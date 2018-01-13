@@ -19,13 +19,13 @@
   "devDependencies": {
     "jest": "^22.0.4",
     "nodemon": "^1.14.8",
-    "superagent": "^3.8.2"
+    "superagent": "^3.8.2",
+    "expect": "^22.0.3"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
-    "expect": "^22.0.3",
     "express": "^4.16.2",
     "mongoose": "^5.0.0-rc2",
     "morgan": "^1.9.0"
